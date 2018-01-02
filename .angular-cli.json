@@ -6,11 +6,11 @@
   "apps": [
     {
       "root": "src",
-      "outDir": "..\\dokobingo\\app",
-      "baseHref": "app",
+      "outDir": "..\\dokobingo\\bingo",
+      "baseHref": "/",
       "assets": [
         "assets",
-        "favicon.ico"
+        "favicon.ico" 
       ],
       "index": "index.html",
       "main": "main.ts",
