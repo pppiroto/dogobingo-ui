@@ -1,6 +1,7 @@
-<button (click)="testSnsAccountLogin('facebook')">facebook</button>
-<button (click)="testSnsAccountLogin('twitter')">twitter</button>
-<button onclick="hello.logout('facebook')">FB Logout</button>
-<button onclick="hello.logout('twitter')">TW Logout</button>
-<button (click)="testSnsAccountStatus('facebook')">FB  Check</button>
-<button (click)="testSnsAccountStatus('twitter')">Tw Check</button>
+<select (change)="selectChangeAccount($event)"> 
+    <option *ngFor="let item of snsAccounts" value="{{item}}" >{{item}}</option>
+</select>
+<select (change)="selectChangeAction($event)">
+    <option *ngFor="let item of testActions" value="{{item}}" >{{item}}</option>
+</select>
+<button (click)="doTestAction()">実行</button>

@@ -16,6 +16,6 @@ export class CoreModule {
       throw new Error('CoreModule is already loaded. Import it in the AppModule only');
     }
     this.accountService.init();
-    console.log("* CoreModule initialized.");
+    console.log(`*B!* CoreModule initialized.`);
   }
 }

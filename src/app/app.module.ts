@@ -9,6 +9,7 @@ import { MainComponent } from './main/main.component';
 import { NaviComponent } from './navi/navi.component';
 import { AccountComponent } from './account/account.component';
 
+import { BsDropdownModule } from 'ngx-bootstrap'
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AccountComponent } from './account/account.component';
     AppRoutingModule, 
     HttpModule,
     CoreModule,
+    BsDropdownModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
