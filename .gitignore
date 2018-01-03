@@ -42,5 +42,5 @@ testem.log
 Thumbs.db
 
 
-# Temp
-app.component.ts
+# Temp (Dev Account)
+account.service.ts
