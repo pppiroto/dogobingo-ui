@@ -1,3 +1,15 @@
-<p>
-  account works!
-</p>
+<script>
+function test() {
+    hello('facebook').api('me').then(function(json) {
+    alert('Your name is ' + json.name);
+  }, function(e) {
+    alert('Whoops! ' + e.error.message);
+  });
+}
+</script>
+
+<button onclick="hello('facebook').login()">facebook</button>
+<button onclick="hello('twitter').login()">twitter</button>
+<button onclick="hello.logout('facebook')">FB Logout</button>
+<button onclick="hello.logout('twitter')">TW Logout</button>
+<button onclick="test()">API</button>
