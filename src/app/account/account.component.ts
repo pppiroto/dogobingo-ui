@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SnsAccount } from '../sns-account.enum';
+import { AccountService } from '../account.service';
 
 declare const hello;
 
@@ -12,10 +13,10 @@ declare const hello;
 export class AccountComponent implements OnInit {
   testActions: string[] = ['','login','logout','check'];
   snsAccounts: string[] = [''];
-  selectedAccount: string = null;
-  selectedAction: string = null;
-
-  constructor() {
+  selectedAccount: string = '';
+  selectedAction: string = '';
+  
+  constructor(private accountService: AccountService) {
     Object.keys(SnsAccount).forEach(x => this.snsAccounts.push(x));
   }
   ngOnInit() {
@@ -25,16 +26,14 @@ export class AccountComponent implements OnInit {
    * SNS認証テスト用処理
    */
   doTestAction() {
-    if (this.selectedAccount != null && this.selectedAction != null) {
-      if (this.selectedAction == "login") {
-        this.testSnsAccountLogin(this.selectedAccount);
-      } else if (this.selectedAction == "logout") {
-        this.testSnsAccountLogout(this.selectedAccount);
-      } else if (this.selectedAction == "check") {
-        this.testSnsAccountCheck(this.selectedAccount);
-      } else {
-        alert(`invalid option ${this.selectedAccount}/${this.selectedAction}`);
-      }
+    if (this.selectedAction == "login") {
+      this.testSnsAccountLogin(this.selectedAccount);
+    } else if (this.selectedAction == "logout") {
+      this.testSnsAccountLogout(this.selectedAccount);
+    } else if (this.selectedAction == "check") {
+      this.testSnsAccountCheck(this.selectedAccount);
+    } else {
+      alert(`invalid option ${this.selectedAccount}/${this.selectedAction}`);
     }
   }
  /**

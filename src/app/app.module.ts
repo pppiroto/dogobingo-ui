@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms'
 import { CoreModule } from './core/core.module';
 
 import { AppComponent } from './app.component';
@@ -22,6 +23,7 @@ import { BsDropdownModule } from 'ngx-bootstrap'
     BrowserModule,
     AppRoutingModule, 
     HttpModule,
+    FormsModule,
     CoreModule,
     BsDropdownModule.forRoot(),
   ],

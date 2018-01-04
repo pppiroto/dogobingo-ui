@@ -1,7 +1,9 @@
-<select (change)="selectChangeAccount($event)"> 
+<select name="selAccount" [(ngModel)]="selectedAccount"> 
     <option *ngFor="let item of snsAccounts" value="{{item}}" >{{item}}</option>
 </select>
-<select (change)="selectChangeAction($event)">
+<select name="selAcion" [(ngModel)]="selectedAction">
     <option *ngFor="let item of testActions" value="{{item}}" >{{item}}</option>
 </select>
 <button (click)="doTestAction()">実行</button>
+
+
