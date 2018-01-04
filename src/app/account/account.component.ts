@@ -7,7 +7,8 @@ declare const hello;
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
-  styleUrls: ['./account.component.css']
+  styleUrls: ['./account.component.css'],
+  providers: [AccountService]
 })
 
 export class AccountComponent implements OnInit {
@@ -27,57 +28,22 @@ export class AccountComponent implements OnInit {
    */
   doTestAction() {
     if (this.selectedAction == "login") {
-      this.testSnsAccountLogin(this.selectedAccount);
+      this.accountService.snsAccountLogin(this.selectedAccount)
+        .then(()=> alert(`login success!`))
+        .catch(e => alert(`login error: ${e}`))
+        ;
     } else if (this.selectedAction == "logout") {
-      this.testSnsAccountLogout(this.selectedAccount);
+      this.accountService.snsAccountLogout(this.selectedAccount)
+        .then(()=> alert('logout success!'))
+        .catch(e => alert(`logout error: ${e}`))
+        ;
     } else if (this.selectedAction == "check") {
-      this.testSnsAccountCheck(this.selectedAccount);
+      this.accountService.getSnsUserInfo(this.selectedAccount)
+        .then((json:any) => alert(`your name is ${json.name}`))
+        .catch(e => alert(`logout error: ${e}`))
+        ;
     } else {
       alert(`invalid option ${this.selectedAccount}/${this.selectedAction}`);
     }
-  }
- /**
-   * SNS認証アカウントプルダウン変更
-   * @param event 
-   */
-  selectChangeAccount(event) {
-    this.selectedAccount = event.target.value;
-  }
-  /**
-   * SNS認証アカウントテスト処理プルダウン変更
-   * @param event 
-   */
-  selectChangeAction(event) {
-    this.selectedAction = event.target.value;
-  }
-  /**
-   * SNS認証情報のログインテスト
-   */
-  testSnsAccountLogin(sns: string) {
-    hello(sns).login().then(function () {
-      alert(`Signin in success ${sns}`);
-    },function(e) {
-      alert(`Signin in error ${e.error.message}`); 
-    });
-  }
-  /**
-   * SNS認証情報のログインテスト
-   */
-  testSnsAccountLogout(sns: string) {
-    hello(sns).logout().then(function() {
-      alert('Signed out');
-    }, function(e) {
-      alert(`Signed out error: ${e.error.message}`);
-    });
-  }
-  /**
-   * SNS認証情報の接続テスト
-   */
-  testSnsAccountCheck(sns: string) {
-    hello(sns).api('me').then(function(json) {
-      alert(`Your name is ${json.name}`);
-    }, function(e) {
-      alert(`Whoops! ${e.error.message}`);
-    });
   }
 }

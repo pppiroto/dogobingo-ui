@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { SnsAccount } from '../sns-account.enum';
+import { AccountService } from '../account.service';
 declare const hello;
 
 @Component({
   selector: 'app-navi',
   templateUrl: './navi.component.html',
-  styleUrls: ['./navi.component.css']
+  styleUrls: ['./navi.component.css'],
+  providers: [AccountService]
+
 })
 export class NaviComponent implements OnInit {
   userName: string;
 
-  constructor() { 
+  constructor(private accountService: AccountService) { 
   }
   ngOnInit() {
     this.getLoginStatus();
@@ -23,41 +26,19 @@ export class NaviComponent implements OnInit {
     var self = this;
     this.userName = null; 
 
-    var promise = this.getSnsUserInfoPromise(SnsAccount.facebook)
-      .then(function(json:any){
+    var promise = this.accountService.getSnsUserInfo(SnsAccount.facebook)
+      .then((json:any) => {
         if (self.userName == null) self.userName = json.name;
       })
-      .catch(function(e:any) { 
-        return this.getSnsUserInfoPromise(SnsAccount.twitter);
+      .catch(e => {
+        return this.accountService.getSnsUserInfo(SnsAccount.twitter);
       })
-      .then(function(json:any){
+      .then((json:any) => {
         if (self.userName == null) self.userName = json.name;
       })
-      .catch(function(e:any) { 
+      .catch(e => { 
         self.userName = "Please login..."
       })
       ;
-  }
-
-  /**
-   * ログインユーザー情報を取得
-   * 
-   * @param sns 
-   */
-  getSnsUserInfoPromise(sns:string) {
-    return new Promise(
-      function(resolve, reject) {
-        hello(sns).api('me').then(
-          function(json) {
-            console.log(`B! ${sns} name:${json.name}`);
-            resolve(json);
-          }, 
-          function(e) {
-            console.log(`B! ${sns} error:${e.error.message}`);
-            reject(e.error.message);
-          }
-        );  
-      }
-    );
   }
 }
