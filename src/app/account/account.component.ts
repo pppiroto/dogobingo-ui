@@ -13,7 +13,7 @@ declare const hello;
 })
 
 export class AccountComponent implements OnInit {
-  testActions: string[] = ['','login','logout','check'];
+  testActions: string[] = ['','login','logout'];
   snsAccounts: string[] = [''];
   selectedAccount: string = '';
   selectedAction: string = '';
@@ -53,11 +53,6 @@ export class AccountComponent implements OnInit {
     } else if (this.selectedAction == "logout") {
       this.accountService.snsAccountLogout(this.selectedAccount)
         .then(()=> alert('logout success!'))
-        .catch(e => alert(`logout error: ${e}`))
-        ;
-    } else if (this.selectedAction == "check") {
-      this.accountService.getSnsUserInfo(this.selectedAccount)
-        .then((json:any) => alert(`your name is ${json.name}`))
         .catch(e => alert(`logout error: ${e}`))
         ;
     } else {
