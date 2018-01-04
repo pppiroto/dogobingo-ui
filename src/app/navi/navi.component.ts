@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SnsAccount } from '../sns-account.enum';
 import { AccountService } from '../account.service';
+import { DoCheck } from '@angular/core/src/metadata/lifecycle_hooks';
 
 declare const hello;
 
@@ -17,6 +18,10 @@ export class NaviComponent implements OnInit {
   constructor(private accountService: AccountService) { 
   }
   ngOnInit() {
+    
+    // TODO: ログイン/ログアウトにより、ナビゲーションバーを更新させる
+    console.log("NaviComponent ngOninit");
+
     this.getLoginStatus();
   }
 

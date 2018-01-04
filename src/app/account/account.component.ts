@@ -25,6 +25,11 @@ export class AccountComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * SNS認証ログイン
+   * 
+   * @param sns 
+   */
   login(sns:string) {
     this.accountService.snsAccountLogin(sns)
     .then(()=> {
@@ -37,8 +42,7 @@ export class AccountComponent implements OnInit {
         msg: `${sns} アカウントで、ログインできませんでした。`,
         timeout: 10000
       });
-    })
-    ;
+    });
   }
 
   /**
