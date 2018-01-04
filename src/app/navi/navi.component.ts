@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SnsAccount } from '../sns-account.enum';
 import { AccountService } from '../account.service';
+
 declare const hello;
 
 @Component({
@@ -11,7 +12,7 @@ declare const hello;
 
 })
 export class NaviComponent implements OnInit {
-  userName: string;
+  user: any;
 
   constructor(private accountService: AccountService) { 
   }
@@ -24,21 +25,10 @@ export class NaviComponent implements OnInit {
    */
   getLoginStatus() {
     var self = this;
-    this.userName = null; 
-
-    var promise = this.accountService.getSnsUserInfo(SnsAccount.facebook)
-      .then((json:any) => {
-        if (self.userName == null) self.userName = json.name;
-      })
-      .catch(e => {
-        return this.accountService.getSnsUserInfo(SnsAccount.twitter);
-      })
-      .then((json:any) => {
-        if (self.userName == null) self.userName = json.name;
-      })
-      .catch(e => { 
-        self.userName = "Please login..."
-      })
+    
+    this.accountService.getSnsAccountLoginUser()
+      .then((json:any) => self.user = json)
+      .catch()
       ;
   }
 }

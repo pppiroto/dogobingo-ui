@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SnsAccount } from '../sns-account.enum';
 import { AccountService } from '../account.service';
 
@@ -16,11 +17,28 @@ export class AccountComponent implements OnInit {
   snsAccounts: string[] = [''];
   selectedAccount: string = '';
   selectedAction: string = '';
-  
-  constructor(private accountService: AccountService) {
+  alerts: any = [];
+
+  constructor(private router: Router, private accountService: AccountService) {
     Object.keys(SnsAccount).forEach(x => this.snsAccounts.push(x));
   }
   ngOnInit() {
+  }
+
+  login(sns:string) {
+    this.accountService.snsAccountLogin(sns)
+    .then(()=> {
+      this.router.navigate(['']);
+    })
+    .catch(e => {
+      console.log(`B! ${sns} login error: ${e}`);
+      this.alerts.push({
+        type: 'warning',
+        msg: `${sns} アカウントで、ログインできませんでした。`,
+        timeout: 10000
+      });
+    })
+    ;
   }
 
   /**

@@ -1,9 +1,20 @@
+<!-- TODO: LAYOUT -->
+<div *ngFor="let alert of alerts">
+    <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+</div>
+
+<button class="zocial facebook" (click)="login('facebook')" i18n>Facebook ログイン</button>
+<button class="zocial twitter" (click)="login('twitter')" i18n>Twitter ログイン</button>
+<button class="zocial google" (click)="login('google')" i18n>Google+ ログイン</button>
+
+<!-- SNS認証テスト用
 <select name="selAccount" [(ngModel)]="selectedAccount"> 
     <option *ngFor="let item of snsAccounts" value="{{item}}" >{{item}}</option>
 </select>
 <select name="selAcion" [(ngModel)]="selectedAction">
     <option *ngFor="let item of testActions" value="{{item}}" >{{item}}</option>
 </select>
-<button (click)="doTestAction()">実行</button>
+-->
+
 
 

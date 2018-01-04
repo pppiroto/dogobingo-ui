@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default">
   <div class="container">
       <ul class="nav navbar-nav navbar-right">
-        <li><a routerLink="/account">{{userName}}</a></li>
+        <li><img src="{{user?.thumbnail}}"><a routerLink="/account">{{user?.name}}</a><button class="zocial {{user?.sns}}"></button></li>
       </ul>
   </div>
 </nav>

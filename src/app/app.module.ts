@@ -11,6 +11,7 @@ import { NaviComponent } from './navi/navi.component';
 import { AccountComponent } from './account/account.component';
 
 import { BsDropdownModule } from 'ngx-bootstrap'
+import { AlertModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { BsDropdownModule } from 'ngx-bootstrap'
     HttpModule,
     FormsModule,
     CoreModule,
+    AlertModule.forRoot(),
     BsDropdownModule.forRoot(),
   ],
   providers: [],
