@@ -5,7 +5,6 @@ import { AccountComponent } from './account/account.component'
 
 const routes: Routes = [
   { path: '',        component: MainComponent },
-  { path: 'account', component: AccountComponent },
   { path: '**',      redirectTo: '/' },
 ];
 

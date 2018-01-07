@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
+
 import { SnsAccount } from '../sns-account.enum';
 import { AccountService } from '../account.service';
+import { User } from '../user';
 
 declare const hello;
 
@@ -12,17 +15,23 @@ declare const hello;
   providers: [AccountService]
 })
 
-export class AccountComponent implements OnInit {
-  testActions: string[] = ['','login','logout'];
-  snsAccounts: string[] = [''];
-  selectedAccount: string = '';
-  selectedAction: string = '';
-  alerts: any = [];
+export class AccountComponent implements OnInit, OnDestroy {
+  alerts: object[] = [];
+  subscription: Subscription
+
+  user: User;
 
   constructor(private router: Router, private accountService: AccountService) {
-    Object.keys(SnsAccount).forEach(x => this.snsAccounts.push(x));
   }
+  
   ngOnInit() {
+    this.subscription = this.accountService.userChangeAnnounced$.subscribe((user:User) => {
+      this.user = user;
+    });  
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   /**
@@ -32,35 +41,24 @@ export class AccountComponent implements OnInit {
    */
   login(sns:string) {
     this.accountService.snsAccountLogin(sns)
-    .then(()=> {
-      this.router.navigate(['']);
-    })
-    .catch(e => {
-      console.log(`B! ${sns} login error: ${e}`);
-      this.alerts.push({
-        type: 'warning',
-        msg: `${sns} アカウントで、ログインできませんでした。`,
-        timeout: 10000
-      });
-    });
-  }
-
-  /**
-   * SNS認証テスト用処理
-   */
-  doTestAction() {
-    if (this.selectedAction == "login") {
-      this.accountService.snsAccountLogin(this.selectedAccount)
-        .then(()=> alert(`login success!`))
-        .catch(e => alert(`login error: ${e}`))
-        ;
-    } else if (this.selectedAction == "logout") {
-      this.accountService.snsAccountLogout(this.selectedAccount)
-        .then(()=> alert('logout success!'))
-        .catch(e => alert(`logout error: ${e}`))
-        ;
-    } else {
-      alert(`invalid option ${this.selectedAccount}/${this.selectedAction}`);
-    }
+      .then(()=> {
+        this.alerts.splice(0, this.alerts.length);
+        // ログインユーザー情報の取得
+        return this.accountService.getSnsLoginUserInfo();
+      })
+      .catch(e => {
+        console.log(`B! ${sns} login error: ${e}`);
+        this.alerts.push({
+          type: 'warning',
+          msg: `${sns} アカウントで、ログインできませんでした。`,
+          timeout: 10000
+        });
+      })
+      .then((user:User) => {
+        // ログインユーザー情報の取得 成功
+        this.router.navigate([""]);
+        this.accountService.announceUserChange(user)
+      })
+      ;
   }
 }

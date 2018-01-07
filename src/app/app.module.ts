@@ -7,7 +7,6 @@ import { CoreModule } from './core/core.module';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
-import { NaviComponent } from './navi/navi.component';
 import { AccountComponent } from './account/account.component';
 
 import { BsDropdownModule } from 'ngx-bootstrap'
@@ -16,7 +15,6 @@ import { AlertModule } from 'ngx-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
-    NaviComponent,
     AccountComponent,
     MainComponent,
   ],
