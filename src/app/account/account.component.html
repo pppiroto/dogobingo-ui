@@ -1,16 +1,19 @@
 <!-- TODO: LAYOUT -->
-<nav class="navbar navbar-default">
-<div class="container">
+<mat-menu #rootMenu="matMenu">
+    <button mat-menu-item [matMenuTriggerFor]="subMenu">ログイン</button>
+</mat-menu>
+<mat-menu #subMenu="matMenu">
+    <button mat-menu-item (click)="login('facebook')" i18n>Facebook</button>
+    <button mat-menu-item (click)="login('twitter')" i18n>Twitter</button>
+    <button mat-menu-item (click)="login('google')" i18n>Google+</button>
+</mat-menu>
+<button mat-icon-button [matMenuTriggerFor]="rootMenu">
+    <mat-icon>more_vert</mat-icon>
+</button>
+
+<div>
     <ul class="nav navbar-nav navbar-right">
         <li><img [src]="user?.thumbnail">{{user?.name}}<button class="zocial {{user?.sns}}"></button></li>
     </ul>
 </div>
-<div *ngFor="let alert of alerts">
-    <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
-</div>
-<button class="zocial facebook" (click)="login('facebook')" i18n>Facebook ログイン</button>
-<button class="zocial twitter" (click)="login('twitter')" i18n>Twitter ログイン</button>
-<button class="zocial google" (click)="login('google')" i18n>Google+ ログイン</button>
-</nav>
-
 

@@ -16,9 +16,7 @@ declare const hello;
 })
 
 export class AccountComponent implements OnInit, OnDestroy {
-  alerts: object[] = [];
   subscription: Subscription
-
   user: User;
 
   constructor(private router: Router, private accountService: AccountService) {
@@ -42,17 +40,14 @@ export class AccountComponent implements OnInit, OnDestroy {
   login(sns:string) {
     this.accountService.snsAccountLogin(sns)
       .then(()=> {
-        this.alerts.splice(0, this.alerts.length);
         // ログインユーザー情報の取得
         return this.accountService.getSnsLoginUserInfo();
       })
       .catch(e => {
         console.log(`B! ${sns} login error: ${e}`);
-        this.alerts.push({
-          type: 'warning',
-          msg: `${sns} アカウントで、ログインできませんでした。`,
-          timeout: 10000
-        });
+
+        // TODO: to Material Dialog
+        alert(`${sns} アカウントで、ログインできませんでした。`);
       })
       .then((user:User) => {
         // ログインユーザー情報の取得 成功
