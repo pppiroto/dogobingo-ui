@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
-import { AccountComponent } from './account/account.component'
+import { NavComponent } from './nav/nav.component'
 
 const routes: Routes = [
   { path: '',        component: MainComponent },

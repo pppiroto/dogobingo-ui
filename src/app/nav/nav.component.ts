@@ -9,13 +9,12 @@ import { User } from '../user';
 declare const hello;
 
 @Component({
-  selector: 'app-account',
-  templateUrl: './account.component.html',
-  styleUrls: ['./account.component.css'],
+  selector: 'app-nav',
+  templateUrl: './nav.component.html',
+  styleUrls: ['./nav.component.css'],
   providers: [AccountService]
 })
-
-export class AccountComponent implements OnInit, OnDestroy {
+export class NavComponent implements OnInit, OnDestroy {
   subscription: Subscription
   user: User;
 

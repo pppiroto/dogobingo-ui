@@ -10,13 +10,13 @@ import { CoreModule } from './core/core.module';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
-import { AccountComponent } from './account/account.component';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AccountComponent,
     MainComponent,
+    NavComponent,
   ],
   imports: [
     BrowserModule,
