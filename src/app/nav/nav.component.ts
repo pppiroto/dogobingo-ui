@@ -11,8 +11,7 @@ declare const hello;
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css'],
-  providers: [AccountService]
+  styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit, OnDestroy {
   subscription: Subscription

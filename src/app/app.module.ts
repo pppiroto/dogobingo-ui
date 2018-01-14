@@ -11,12 +11,17 @@ import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { NavComponent } from './nav/nav.component';
+import { RoomComponent } from './room/room.component';
+
+import { AccountService } from './account.service';
+import { DokobingoService } from './dokobingo.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     NavComponent,
+    RoomComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +32,9 @@ import { NavComponent } from './nav/nav.component';
     BrowserAnimationsModule,
     CoreModule,
   ],
-  providers: [],
+  providers: [
+    AccountService, 
+    DokobingoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
