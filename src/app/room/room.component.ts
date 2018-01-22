@@ -14,4 +14,8 @@ export class RoomComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  apiTest() {
+    this.bingoService.hello('Yagi');
+  }
 }

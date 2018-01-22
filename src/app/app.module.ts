@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'
 import { MatIconModule, MatMenuModule, MatToolbarModule, MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,7 +26,8 @@ import { DokobingoService } from './dokobingo.service';
   imports: [
     BrowserModule,
     AppRoutingModule, 
-    HttpModule,
+    HttpClientModule,
+    HttpClientXsrfModule, /*.withOptions({ cookieName: 'XSRF-TOKEN', headerName: 'X-XSRF-TOKEN'})*/
     FormsModule,
     MatIconModule, MatMenuModule,MatToolbarModule, MatButtonModule, MatCheckboxModule,
     BrowserAnimationsModule,
