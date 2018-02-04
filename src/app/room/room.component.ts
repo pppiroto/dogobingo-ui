@@ -8,6 +8,7 @@ import { DokobingoService } from '../dokobingo.service';
   styleUrls: ['./room.component.css']
 })
 export class RoomComponent implements OnInit {
+  hello: any;
 
   constructor(private accountService: AccountService, private bingoService: DokobingoService) { 
   }
@@ -16,6 +17,14 @@ export class RoomComponent implements OnInit {
   }
 
   apiTest() {
-    this.bingoService.hello('Yagi');
-  }
+    this.bingoService.hello('Yagi').subscribe(
+      response => {
+        this.hello = response;
+        console.log(this.hello);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+   }
 }
