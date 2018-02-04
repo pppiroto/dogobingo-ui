@@ -1,15 +1,16 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { DokobingoService } from './dokobingo.service';
+import { HttpClient, HttpHandler } from '@angular/common/http'
 
 describe('DokobingoService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DokobingoService]
+      providers: [DokobingoService, HttpClient, HttpHandler]
     });
   });
 
-  it('should be created', inject([DokobingoService], (service: DokobingoService) => {
+  it('hello api', inject([DokobingoService], (service: DokobingoService) => {
     expect(service).toBeTruthy();
   }));
 });

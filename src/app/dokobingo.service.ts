@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { XSRFStrategy } from '@angular/http/src/interfaces';
-
 
 @Injectable()
 export class DokobingoService {
