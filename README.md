@@ -30,7 +30,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 # MEMO
 ng serve
 ng build -prod --base-href="/bingo/"
-
+ng build --base-href="/bingo/" --watch=true
 ## Hello.js
 > npm i hellojs
 
@@ -41,3 +41,7 @@ ng build -prod --base-href="/bingo/"
 
 ## TypeDoc
  > typedoc --out ./docs/ ./src/ --module commonjs
+
+## GCloud
+cd "C:\workspaces\dokobingo\dokobingo"
+gcloud app deploy
