@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { User } from './user';
+import { logging } from 'protractor';
 
 @Injectable()
 export class DokobingoService {
@@ -11,6 +13,15 @@ export class DokobingoService {
   constructor(private http: HttpClient) { 
   }
 
+  createRoom(user: User){
+    const headers = new HttpHeaders()
+      .set("Content-Type", "application/json");
+    return this.http.post('/api/create_room',
+      JSON.stringify({user}),
+     {headers}
+    );
+  }
+  
   hello(name: string) {
     const headers = new HttpHeaders()
       .set("Content-Type", "application/json");

@@ -9,11 +9,24 @@ import { DokobingoService } from '../dokobingo.service';
 })
 export class RoomComponent implements OnInit {
   hello: any;
+  room: any;
 
   constructor(private accountService: AccountService, private bingoService: DokobingoService) { 
   }
 
   ngOnInit() {
+  }
+
+  createRoom() {
+    this.bingoService.createRoom(this.accountService.getUser()).subscribe(
+      response => {
+        this.room = response;
+        console.log(this.room);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   apiTest() {

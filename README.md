@@ -39,6 +39,9 @@ ng build --base-href="/bingo/" --watch=true
         "../node_modules/hellojs/dist/hello.all.js"
       ],
 
+## Git
+git push -u origin master
+
 ## TypeDoc
  > typedoc --out ./docs/ ./src/ --module commonjs
 
