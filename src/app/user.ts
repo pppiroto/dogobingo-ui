@@ -1,6 +1,7 @@
 export class User {
-    sns: string;
     id: string;
+    sns: string;
+    sns_id: string;
     name: string;
     thumbnail: string;
 
@@ -8,8 +9,9 @@ export class User {
     }
 
     reset(): User {
-        this.sns = "";
         this.id = "";
+        this.sns = "";
+        this.sns_id = "";
         this.name = "";
         this.thumbnail = "";
         
